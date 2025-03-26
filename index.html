@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candy Paradise - Cardápio</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa, #eaeaea);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    /* Animações */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes textPop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    header {
+      background: #fff;
+      padding: 40px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeInDown 1s ease-out;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      animation: textPop 1s ease-out;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #666;
+      animation: fadeIn 2s ease-out;
+    }
+    nav {
+      margin: 20px 0;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      color: #555;
+      transform: translateY(-3px);
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-out;
+    }
+    .menu-section {
+      margin: 60px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideIn 1s forwards;
+    }
+    .menu-section h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      animation: fadeIn 1s ease-out;
+    }
+    .menu-item {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+    }
+    /* Alterna delays para os itens */
+    .menu-item:nth-child(1) { animation-delay: 0.2s; }
+    .menu-item:nth-child(2) { animation-delay: 0.4s; }
+    .menu-item:nth-child(3) { animation-delay: 0.6s; }
+    .menu-item:nth-child(4) { animation-delay: 0.8s; }
+    .menu-item:nth-child(5) { animation-delay: 1s; }
+    .menu-item:nth-child(6) { animation-delay: 1.2s; }
+    
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    .item-name {
+      flex: 1 1 50%;
+      font-weight: 600;
+    }
+    .item-desc {
+      flex: 1 1 40%;
+      font-style: italic;
+      color: #666;
+    }
+    .item-price {
+      flex: 0 0 100px;
+      text-align: right;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      margin-top: 60px;
+      border-top: 1px solid #ddd;
+      animation: fadeInUp 1s ease-out;
+    }
+    /* Responsividade */
+    @media(max-width: 768px) {
+      .menu-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      .item-price {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Candy Paradise</h1>
+    <p>Doces e Delícias para Todos</p>
+  </header>
+  
+  <nav>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+  
+  <div class="container">
+    <!-- Sobre -->
+    <section id="sobre" class="menu-section">
+      <h2>Sobre</h2>
+      <p>Bem-vindo ao Candy Paradise! Aqui preparamos nossos doces com muito carinho e os melhores ingredientes para garantir uma experiência única para todos os alunos da nossa escola. Nossa missão é adoçar esse dia com qualidade e sabor.</p>
+    </section>
+  
+    <!-- Cardápio -->
+    <section id="cardapio" class="menu-section">
+      <h2>Cardápio</h2>
+      <div class="menu-item">
+        <div class="item-name">Bolo no Pote - Ninho com Nutella</div>
+        <div class="item-desc">Leite Ninho mais o recheio de Nutella</div>
+        <div class="item-price">R$ 10,00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-name">Bolo no Pote - Ninho com Morango</div>
+        <div class="item-desc">Leite Ninho mais o recheio de Morango</div>
+        <div class="item-price">R$ 8,00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-name">Brigadeiro Tradicional</div>
+        <div class="item-desc">Brigadeiro com granulado e Chocolate Branco</div>
+        <div class="item-price">R$ 7,00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-name">Oreo Mágico</div>
+        <div class="item-desc">Pedaços da bolacha Oreo, Chocolate Branco e Brigadeiro</div>
+        <div class="item-price">R$ 9,00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-name">Bolo no Pote - KitCat</div>
+        <div class="item-desc">Pedaços de KitCat mais Brigadeiro e Ninho</div>
+        <div class="item-price">R$ 10,00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-name">Bombom</div>
+        <div class="item-desc">Casca crocante de Chocolate recheado com Chocolate Branco e Morango</div>
+        <div class="item-price">R$ 4,00</div>
+      </div>
+    </section>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Candy Paradise - Todos os direitos reservados.</p>
+  </footer>
+  
+  <script>
+    // Ativa animação dos elementos conforme eles entram na viewport (opcional)
+    const sections = document.querySelectorAll('.menu-section');
+    const options = { threshold: 0.3 };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+    
+    console.log("Site carregado com sucesso!");
+  </script>
+</body>
+</html>
