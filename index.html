@@ -4,254 +4,290 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Candy Paradise - Cardápio</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset básico */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    
+    :root {
+      --primary-color: #FF6B88;
+      --secondary-color: #4ECDC4;
+      --text-color: #333;
+      --background-color: #F7F9FC;
+    }
+    
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #f8f9fa, #eaeaea);
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
       line-height: 1.6;
-      overflow-x: hidden;
     }
-    /* Animações */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes textPop {
+    
+    /* Animations */
+    @keyframes slideInFromLeft {
       0% {
-        transform: scale(0.8);
         opacity: 0;
-      }
-      60% {
-        transform: scale(1.1);
-        opacity: 1;
+        transform: translateX(-50px);
       }
       100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      70% {
+        opacity: 0.7;
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
         transform: scale(1);
       }
     }
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
     
-    header {
-      background: #fff;
-      padding: 40px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      animation: fadeInDown 1s ease-out;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      animation: textPop 1s ease-out;
-    }
-    header p {
-      font-size: 1.2rem;
-      color: #666;
-      animation: fadeIn 2s ease-out;
-    }
-    nav {
-      margin: 20px 0;
-      text-align: center;
-      animation: fadeIn 1.5s ease-out;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-size: 1.1rem;
-      transition: color 0.3s, transform 0.3s;
-    }
-    nav a:hover {
-      color: #555;
-      transform: translateY(-3px);
-    }
+    /* Layout */
     .container {
       max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-      animation: fadeIn 1.5s ease-out;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .menu-section {
-      margin: 60px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideIn 1s forwards;
-    }
-    .menu-section h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      animation: fadeIn 1s ease-out;
-    }
-    .menu-item {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
-      opacity: 0;
-      animation: fadeInUp 1s forwards;
-    }
-    /* Alterna delays para os itens */
-    .menu-item:nth-child(1) { animation-delay: 0.2s; }
-    .menu-item:nth-child(2) { animation-delay: 0.4s; }
-    .menu-item:nth-child(3) { animation-delay: 0.6s; }
-    .menu-item:nth-child(4) { animation-delay: 0.8s; }
-    .menu-item:nth-child(5) { animation-delay: 1s; }
-    .menu-item:nth-child(6) { animation-delay: 1.2s; }
     
-    .menu-item:last-child {
-      border-bottom: none;
+    /* Header */
+    .header {
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .item-name {
-      flex: 1 1 50%;
-      font-weight: 600;
+    
+    .header-content {
+      position: relative;
+      z-index: 10;
     }
-    .item-desc {
-      flex: 1 1 40%;
-      font-style: italic;
+    
+    .header h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      animation: popIn 1s ease-out;
+    }
+    
+    .header p {
+      font-size: 1.2rem;
       color: #666;
+      animation: slideInFromRight 1s ease-out;
     }
-    .item-price {
-      flex: 0 0 100px;
-      text-align: right;
+    
+    /* Navigation */
+    .navigation {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      gap: 30px;
+    }
+    
+    .navigation a {
+      text-decoration: none;
+      color: var(--text-color);
       font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 10px;
     }
-    footer {
+    
+    .navigation a::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary-color);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .navigation a:hover {
+      color: var(--primary-color);
+    }
+    
+    .navigation a:hover::after {
+      transform: scaleX(1);
+    }
+    
+    /* Menu Section */
+    .menu-section {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .menu-section h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+    
+    /* Menu Items */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    
+    .menu-item {
+      background-color: var(--background-color);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .menu-item .item-name {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .menu-item .item-desc {
+      color: #666;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    
+    .menu-item .item-price {
+      font-weight: 600;
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: white;
       text-align: center;
       padding: 20px;
-      background: #fff;
-      margin-top: 60px;
-      border-top: 1px solid #ddd;
-      animation: fadeInUp 1s ease-out;
+      box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
     }
-    /* Responsividade */
-    @media(max-width: 768px) {
-      .menu-item {
-        flex-direction: column;
-        text-align: center;
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
       }
-      .item-price {
-        text-align: center;
-        margin-top: 10px;
+      
+      .navigation {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .menu-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Candy Paradise</h1>
-    <p>Doces e Delícias para Todos</p>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Candy Paradise</h1>
+        <p>Doces e Delícias para Todos os Alunos</p>
+      </div>
+    </div>
   </header>
   
-  <nav>
-    <a href="#cardapio">Cardápio</a>
+  <nav class="navigation container">
     <a href="#sobre">Sobre</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#contato">Contato</a>
   </nav>
   
-  <div class="container">
-    <!-- Sobre -->
+  <main class="container">
     <section id="sobre" class="menu-section">
-      <h2>Sobre</h2>
-      <p>Bem-vindo ao Candy Paradise! Aqui preparamos nossos doces com muito carinho e os melhores ingredientes para garantir uma experiência única para todos os alunos da nossa escola. Nossa missão é adoçar esse dia com qualidade e sabor.</p>
+      <h2>Sobre Nós</h2>
+      <p class="text-center">
+        Bem-vindo ao Candy Paradise! Aqui preparamos nossos doces com muito carinho e os melhores ingredientes para garantir uma experiência única para todos os alunos da nossa escola. Nossa missão é adoçar esse dia com qualidade e sabor.
+      </p>
     </section>
-  
-    <!-- Cardápio -->
-    <section id="cardapio" class="menu-section">
-      <h2>Cardápio</h2>
-      <div class="menu-item">
-        <div class="item-name">Bolo no Pote - Ninho com Nutella</div>
-        <div class="item-desc">Leite Ninho mais o recheio de Nutella</div>
-        <div class="item-price">R$ 10,00</div>
-      </div>
-      <div class="menu-item">
-        <div class="item-name">Bolo no Pote - Ninho com Morango</div>
-        <div class="item-desc">Leite Ninho mais o recheio de Morango</div>
-        <div class="item-price">R$ 8,00</div>
-      </div>
-      <div class="menu-item">
-        <div class="item-name">Brigadeiro Tradicional</div>
-        <div class="item-desc">Brigadeiro com granulado e Chocolate Branco</div>
-        <div class="item-price">R$ 7,00</div>
-      </div>
-      <div class="menu-item">
-        <div class="item-name">Oreo Mágico</div>
-        <div class="item-desc">Pedaços da bolacha Oreo, Chocolate Branco e Brigadeiro</div>
-        <div class="item-price">R$ 9,00</div>
-      </div>
-      <div class="menu-item">
-        <div class="item-name">Bolo no Pote - KitCat</div>
-        <div class="item-desc">Pedaços de KitCat mais Brigadeiro e Ninho</div>
-        <div class="item-price">R$ 10,00</div>
-      </div>
-      <div class="menu-item">
-        <div class="item-name">Bombom</div>
-        <div class="item-desc">Casca crocante de Chocolate recheado com Chocolate Branco e Morango</div>
-        <div class="item-price">R$ 4,00</div>
-      </div>
-    </section>
-  </div>
-  
-  <footer>
-    <p>&copy; 2025 Candy Paradise - Todos os direitos reservados.</p>
-  </footer>
-  
-  <script>
-    // Ativa animação dos elementos conforme eles entram na viewport (opcional)
-    const sections = document.querySelectorAll('.menu-section');
-    const options = { threshold: 0.3 };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
     
-    console.log("Site carregado com sucesso!");
-  </script>
+    <section id="cardapio" class="menu-section">
+      <h2>Nosso Cardápio</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="item-name">Bolo no Pote - Ninho com Nutella</div>
+          <div class="item-desc">Delicioso bolo de Leite Ninho com generoso recheio de Nutella</div>
+          <div class="item-price">R$ 10,00</div>
+        </div>
+        
+        <div class="menu-item">
+          <div class="item-name">Bolo no Pote - Ninho com Morango</div>
+          <div class="item-desc">Bolo de Leite Ninho com recheio de Morango fresco</div>
+          <div class="item-price">R$ 8,00</div>
+        </div>
+        
+        <div class="menu-item">
+          <div class="item-name">Brigadeiro Tradicional</div>
+          <div class="item-desc">Brigadeiro clássico com granulado e toque de Chocolate Branco</div>
+          <div class="item-price">R$ 7,00</div>
+        </div>
+        
+        <div class="menu-item">
+          <div class="item-name">Oreo Mágico</div>
+          <div class="item-desc">Combinação irresistível de Oreo, Chocolate Branco e Brigadeiro</div>
+          <div class="item-price">R$ 9,00</div>
+        </div>
+        
+        <div class="menu-item">
+          <div class="item-name">Bolo no Pote - KitCat</div>
+          <div class="item-desc">Bolo com pedaços de KitCat, Brigadeiro e Leite Ninho</div>
+          <div class="item-price">R$ 10,00</div>
+        </div>
+        
+        <div class="menu-item">
+          <div class="item-name">Bombom</div>
+          <div class="item-desc">Chocolate crocante recheado com Chocolate Branco e Morango</div>
+          <div class="item-price">R$ 4,00</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 Candy Paradise - Escola Credencial do Futuro</p>
+  </footer>
 </body>
 </html>
