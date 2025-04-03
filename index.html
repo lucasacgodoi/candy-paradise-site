@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paraíso dos Doces - Cardápio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     * {
       margin: 0;
@@ -17,11 +18,12 @@
       --secondary-color: #4ECDC4;
       --text-color: #333;
       --background-color: #F7F9FC;
+      --accent-color: #FFD166;
     }
     
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--background-color);
+      background: linear-gradient(135deg, #F7F9FC 0%, #E8F4F2 100%);
       color: var(--text-color);
       line-height: 1.6;
     }
@@ -64,6 +66,45 @@
       }
     }
     
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 136, 0.7);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 107, 136, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 136, 0);
+      }
+    }
+    
+    @keyframes colorShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    
     /* Layout */
     .container {
       max-width: 1200px;
@@ -73,38 +114,75 @@
     
     /* Header */
     .header {
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      padding: 40px 0;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
+      box-shadow: 0 4px 20px rgba(255,107,136,0.2);
+      padding: 60px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      z-index: 1;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      z-index: 1;
     }
     
     .header-content {
       position: relative;
       z-index: 10;
     }
-    
+
     .header h1 {
-      font-size: 3rem;
-      color: var(--primary-color);
-      margin-bottom: 10px;
+      font-size: 3.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
       animation: popIn 1s ease-out;
     }
     
     .header p {
-      font-size: 1.2rem;
-      color: #666;
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.9);
       animation: slideInFromRight 1s ease-out;
+      font-weight: 300;
     }
     
     /* Navigation */
     .navigation {
       display: flex;
       justify-content: center;
-      margin: 30px 0;
-      gap: 30px;
+      margin: 40px 0;
+      gap: 40px;
+      background-color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .navigation a {
@@ -112,95 +190,187 @@
       color: var(--text-color);
       font-weight: 600;
       position: relative;
-      transition: color 0.3s ease;
-      padding: 10px;
-    }
-    
-    .navigation a::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--primary-color);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      padding: 10px 20px;
+      border-radius: 25px;
     }
     
     .navigation a:hover {
-      color: var(--primary-color);
-    }
-    
-    .navigation a:hover::after {
-      transform: scaleX(1);
+      color: white;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 5s ease infinite;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255,107,136,0.4);
     }
     
     /* Menu Section */
     .menu-section {
       background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 40px;
-      margin-bottom: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      padding: 50px;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .menu-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
     }
     
     .menu-section h2 {
       text-align: center;
       color: var(--primary-color);
-      margin-bottom: 30px;
-      font-size: 2.5rem;
+      margin-bottom: 40px;
+      font-size: 2.8rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .menu-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
+      border-radius: 2px;
+    }
+
+    .text-center {
+      text-align: center;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      color: #666;
     }
     
     /* Menu Items */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
     }
     
     .menu-item {
       background-color: var(--background-color);
-      border-radius: 10px;
-      padding: 20px;
+      border-radius: 15px;
+      padding: 25px;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       border: 2px solid transparent;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
     
     .menu-item:hover {
-      transform: translateY(-10px);
+      transform: translateY(-15px);
       border-color: var(--primary-color);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .menu-item:hover .item-image {
+      animation: pulse 2s infinite;
+    }
+    
+    .item-image {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      z-index: 10;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite, float 3s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .item-image img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
+      border-radius: 50%;
     }
     
     .menu-item .item-name {
       font-weight: 600;
       color: var(--primary-color);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      margin-top: 35px;
     }
     
     .menu-item .item-desc {
       color: #666;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       flex-grow: 1;
+      font-size: 0.95rem;
     }
     
     .menu-item .item-price {
       font-weight: 600;
-      color: var(--secondary-color);
-      font-size: 1.2rem;
+      color: white;
+      font-size: 1.3rem;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
+      padding: 8px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     /* Footer */
     .footer {
       background-color: white;
       text-align: center;
-      padding: 20px;
-      box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+      padding: 30px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(-45deg, #FF6B88, #FF8E53, #4ECDC4, #FFD166);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
+    }
+    
+    .footer p {
+      color: #666;
+      font-weight: 300;
     }
     
     /* Responsive Design */
@@ -212,10 +382,15 @@
       .navigation {
         flex-direction: column;
         align-items: center;
+        padding: 15px;
       }
       
       .menu-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .menu-section {
+        padding: 30px 20px;
       }
     }
   </style>
@@ -224,53 +399,68 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <h1>Paraíso dos Doces</h1>
-        <p>Doces e Delícias para Todos os Alunos</p>
+        <h1 class="animate__animated animate__bounceIn">Paraíso dos Doces</h1>
+        <p class="animate__animated animate__fadeInUp">Doces e Delícias para Todos os Alunos</p>
       </div>
     </div>
   </header>
   
-  <nav class="navigation container">
+  <nav class="navigation container animate__animated animate__fadeIn">
     <a href="#sobre">Sobre</a>
     <a href="#cardapio">Cardápio</a>
   </nav>
   
   <main class="container">
-    <section id="sobre" class="menu-section">
+    <section id="sobre" class="menu-section animate__animated animate__fadeIn">
       <h2>Sobre Nós</h2>
       <p class="text-center">
         Bem-vindo ao Paraíso dos Doces! Aqui preparamos nossos doces com muito carinho e os melhores ingredientes para garantir uma experiência única para todos os alunos da nossa escola. Nossa missão é adoçar esse dia com qualidade e sabor.
       </p>
     </section>
     
-    <section id="cardapio" class="menu-section">
+    <section id="cardapio" class="menu-section animate__animated animate__fadeIn">
       <h2>Nosso Cardápio</h2>
       <div class="menu-grid">
-        <div class="menu-item">
+        <div class="menu-item animate__animated animate__fadeInUp">
+          <div class="item-image">
+            <img src="/api/placeholder/56/56" alt="Brownie">
+          </div>
           <div class="item-name">Brownie</div>
           <div class="item-desc">Um delicioso brownie de chocolate, com textura macia por dentro e uma fina casquinha crocante por fora.</div>
           <div class="item-price">R$ 6,00</div>
         </div>
         
-        <div class="menu-item">
+        <div class="menu-item animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+          <div class="item-image">
+            <img src="/api/placeholder/56/56" alt="Pipoca Gourmet">
+          </div>
           <div class="item-name">Pipoca Gourmet</div>
           <div class="item-desc">Pipoca gourmet feita com milho de alta qualidade e ingredientes selecionados, garantindo uma textura crocante e um sabor único.</div>
           <div class="item-price">R$ 5,00</div>
         </div>
         
-        <div class="menu-item">
+        <div class="menu-item animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+          <div class="item-image">
+            <img src="/api/placeholder/56/56" alt="Brigadeiro">
+          </div>
           <div class="item-name">Brigadeiro</div>
           <div class="item-desc">Brigadeiro tradicional, feito com leite condensado de qualidade e chocolate puro, finalizado com granulado crocante.</div>
           <div class="item-price">R$ 4,00</div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+          <div class="item-image">
+            <img src="/api/placeholder/56/56" alt="Bolo gelado">
+          </div>
           <div class="item-name">Bolo gelado</div>
           <div class="item-desc">Bolo gelado macio e úmido, envolvido em uma calda cremosa e coberto com coco ralado.</div>
           <div class="item-price">R$ 5,00</div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item animate__animated animate__fadeInUp" style="animation-delay: 0.8s">
+          <div class="item-image">
+            <img src="/api/placeholder/56/56" alt="Fini">
+          </div>
           <div class="item-name">Fini</div>
           <div class="item-desc">Fini com sabores intensos e textura macia, perfeitas para quem ama um doce divertido e saboroso.</div>
           <div class="item-price">R$ 2,00</div>
@@ -284,4 +474,3 @@
   </footer>
 </body>
 </html>
-
